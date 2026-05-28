@@ -37,15 +37,18 @@ const PaymentForm = () => {
     );
 
     if (error) {
-      setErrorMessage(error);
+      setErrorMessage(error.message);
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
       toast.success("Payment Successful.");
+      dispatch(toggleOrderStep());
+      dispatch(clearCart());
       navigateTo("/");
+
+
     }
 
     setIsProcessing(false);
-    dispatch(toggleOrderStep());
-    dispatch(clearCart());
+    
   };
 
   return (

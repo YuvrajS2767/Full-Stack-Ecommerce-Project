@@ -68,7 +68,7 @@ const Payment = () => {
   formData.append("address", shippingDetails.address);
   formData.append("pincode", shippingDetails.zipCode);
   formData.append("phone", shippingDetails.phone);
-  formData.append("orderedItems", JSON.stringify(cart));
+  formData.append("orderItems", JSON.stringify(cart));
 
   dispatch(placeOrder(formData));
 };
@@ -364,13 +364,13 @@ const Payment = () => {
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Shipping</span>
                       <span className="text-green-500">
-                        {totalWithTax >= 50 ? "Free" : "₹2"}
+                        {total >= 50 ? "Free" : "₹2"}
                       </span>
                     </div>
 
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Tax</span>
-                      <span>{(total * 0.18).toFixed(2)}</span>
+                      <span>₹{(total * 0.18).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between font-semibold text-lg pt-2 border-t border-[hsla(var(--glass-border))]">
                       <span>Total</span>
