@@ -69,6 +69,8 @@ const Payment = () => {
   formData.append("pincode", shippingDetails.zipCode);
   formData.append("phone", shippingDetails.phone);
   formData.append("orderItems", JSON.stringify(cart));
+  formData.append("total_price", totalWithTax);
+
 
   dispatch(placeOrder(formData));
 };
