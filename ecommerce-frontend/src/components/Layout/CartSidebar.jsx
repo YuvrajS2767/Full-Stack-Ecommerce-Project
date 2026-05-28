@@ -81,7 +81,7 @@ const CartSidebar = () => {
                               {item.product.name}
                             </h3>
                             <p className="text-primary font-semibold">
-                              ${item.product.price}
+                              ₹ {item.product.price}
                             </p>
                             {/* Quantity Controls */}
 
@@ -134,7 +134,7 @@ const CartSidebar = () => {
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-lg font-semibold">Total:</span>
                   <span className="text-xl font-bold text-primary">
-                    ${total.toFixed(2)}
+                    ₹ {total.toFixed(2)}
                   </span>
                 </div>
 

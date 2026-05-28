@@ -8,7 +8,7 @@ import {
   Plus,
   Minus,
   Loader,
-  CircleDollarSign,
+  IndianRupee,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import ReviewsContainer from "../components/Products/ReviewsContainer";
@@ -214,7 +214,7 @@ const ProductDetail = () => {
                       className="flex items-center justify-center space-x-2 py-3 gradient-primary text-primary-foreground rounded-lg hover:glow-on-hover animate-smooth font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                       onClick={handleBuyNow}
                     >
-                      <CircleDollarSign className="w-5 h-5" />
+                      <IndianRupee className="w-5 h-5" />
                       <span>Buy Now</span>
                     </button>
                   </div>
