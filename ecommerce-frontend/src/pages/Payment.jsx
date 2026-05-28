@@ -61,7 +61,7 @@ const Payment = () => {
   }
 
   const orderItems = cart.map((item) => ({
-product_id: item.product._id || item.product.id,  quantity: item.quantity,
+product_id: item.product._id,
   price: item.product.price,
   title: item.product.name,
   image: item.product.images[0].url,
@@ -77,25 +77,15 @@ const shippingInfo = {
   pincode: shippingDetails.zipCode,
 };
 
-const formData = new FormData();
+const orderData = {
+  orderItems,
+  shippingInfo,
+  items_price: total,
+  tax_price: total * 0.18,
+  shipping_price: total >= 50 ? 0 : 2,
+  total_price: totalWithTax,
+};
 
-formData.append("orderItems", JSON.stringify(orderItems));
-
-formData.append(
-  "shippingInfo",
-  JSON.stringify(shippingInfo)
-);
-
-formData.append("items_price", total);
-
-formData.append("tax_price", total * 0.18);
-
-formData.append(
-  "shipping_price",
-  total >= 50 ? 0 : 2
-);
-
-formData.append("total_price", totalWithTax);
 
 dispatch(placeOrder(formData));};
 

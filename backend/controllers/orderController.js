@@ -170,7 +170,7 @@ export const updateOrderStatus = catchAsyncErrors(async (req, res, next) => {
   const { status } = req.body;
 
   const result = await database.query(
-    `UPDATE orders SET status = $1 WHERE id = $2 RETURNING *`,
+    `UPDATE orders SET order_status = $1 WHERE id = $2 RETURNING *`,
     [status, orderId]
   );
 
