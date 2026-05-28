@@ -14,7 +14,7 @@ const LoginModal = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const { authUser, isSigningUp, isLoggingIn, isRequestingForToken } =
+  const { authUser, isSigningUp, isLoggingIn, isRequestingForToken ,   isUpdatingPassword,} =
     useSelector((state) => state.auth);
   const { isAuthPopupOpen } = useSelector((state) => state.popup);
 
