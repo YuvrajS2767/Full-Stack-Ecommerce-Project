@@ -61,7 +61,8 @@ const Payment = () => {
   }
 
   const orderItems = cart.map((item) => ({
-product_id: item.product._id,
+  product_id: item.product._id,
+  quantity: item.quantity,
   price: item.product.price,
   title: item.product.name,
   image: item.product.images[0].url,
