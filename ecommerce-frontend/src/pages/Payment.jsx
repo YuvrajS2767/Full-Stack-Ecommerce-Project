@@ -60,20 +60,45 @@ const Payment = () => {
     return;
   }
 
-  const formData = new FormData();
-  formData.append("full_name", shippingDetails.fullName);
-  formData.append("state", shippingDetails.state);
-  formData.append("city", shippingDetails.city);
-  formData.append("country", shippingDetails.country);
-  formData.append("address", shippingDetails.address);
-  formData.append("pincode", shippingDetails.zipCode);
-  formData.append("phone", shippingDetails.phone);
-  formData.append("orderItems", JSON.stringify(cart));
-  formData.append("total_price", totalWithTax);
+  const orderItems = cart.map((item) => ({
+  product_id: item.product.id,
+  quantity: item.quantity,
+  price: item.product.price,
+  title: item.product.name,
+  image: item.product.images[0].url,
+}));
 
-
-  dispatch(placeOrder(formData));
+const shippingInfo = {
+  fullName: shippingDetails.fullName,
+  phone: shippingDetails.phone,
+  address: shippingDetails.address,
+  city: shippingDetails.city,
+  state: shippingDetails.state,
+  country: shippingDetails.country,
+  pincode: shippingDetails.zipCode,
 };
+
+const formData = new FormData();
+
+formData.append("orderItems", JSON.stringify(orderItems));
+
+formData.append(
+  "shippingInfo",
+  JSON.stringify(shippingInfo)
+);
+
+formData.append("items_price", total);
+
+formData.append("tax_price", total * 0.18);
+
+formData.append(
+  "shipping_price",
+  total >= 50 ? 0 : 2
+);
+
+formData.append("total_price", totalWithTax);
+
+dispatch(placeOrder(formData));};
 
   if (cart.length === 0) {
     return (
