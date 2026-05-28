@@ -85,8 +85,8 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 
 export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const { email } = req.body;
-  const { frontendUrl } = req.query;
-  let userResult = await database.query(
+const frontendUrl =
+  req.query.frontendUrl || process.env.FRONTEND_URL;  let userResult = await database.query(
     `SELECT * FROM users WHERE email = $1`,
     [email]
   );
@@ -117,6 +117,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
       message: `Email sent to ${user.email} successfully.`,
     });
   } catch (error) {
+    console.error("EMAIL ERROR FULL:", error);
     await database.query(
       `UPDATE users SET reset_password_token = NULL, reset_password_expire = NULL WHERE email = $1`,
       [email]
