@@ -95,7 +95,7 @@ const Cart = () => {
                         </p>
                         <div className="flex items-center space-x-2">
                           <span className="text-xl font-bold text-primary">
-                            ${item.product.price}
+                            ₹{item.product.price}
                           </span>
                         </div>
                       </div>
@@ -136,7 +136,7 @@ const Cart = () => {
 
                       <div className="text-right">
                         <p className="text-lg font-bold text-foreground">
-                          ${(item.product.price * item.quantity).toFixed(2)}
+                          ₹{(item.product.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
                     </div>
@@ -156,26 +156,26 @@ const Cart = () => {
                     <span className="text-muted-foreground">
                       Subtotal ({cartItemsCount} items)
                     </span>
-                    <span className="font-semibold">${total.toFixed(2)}</span>
+                    <span className="font-semibold">₹{total.toFixed(2)}</span>
                   </div>
 
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Shipping</span>
                     <span className="font-semibold text-green-500">
-                      {total >= 50 ? "Free" : "$2"}
+                      {total >= 50 ? "Free" : "₹50"}
                     </span>
                   </div>
 
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Tax</span>
                     <span className="font-semibold">
-                      ${(total * 0.18).toFixed(2)}
+                      ₹{(total * 0.18).toFixed(2)}
                     </span>
                   </div>
                   <div className="border-t border-[hsla(var(--glass-border))] pt-4">
                     <div className="flex justify-between">
                       <span className="text-lg font-semibold">Total</span>
-                      <span>${(total + total * 0.18).toFixed(2)}</span>
+                      <span>₹{(total + total * 0.18).toFixed(2)}</span>
                     </div>
                   </div>
                 </div>
