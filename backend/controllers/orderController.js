@@ -14,6 +14,8 @@ export const placeNewOrder = catchAsyncErrors(async (req, res, next) => {
     shipping_price,
     total_price,
   } = req.body;
+  console.log("REQ BODY:", req.body);
+console.log("ORDER ITEMS:", orderItems);
 
   if (!req.user || !req.user.id) {
     return next(new ErrorHandler("User not authenticated", 401));
