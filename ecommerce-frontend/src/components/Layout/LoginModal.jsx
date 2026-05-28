@@ -44,13 +44,15 @@ const LoginModal = () => {
     if (mode === "signup") data.append("name", formData.name);
 
     if (mode === "forgot") {
-      dispatch(forgotPassword({ email: formData.email })).then(() => {
-          if (!res.error) {
-        dispatch(toggleAuthPopup());
-        setMode("signin");}
-      });
-      return;
+  dispatch(forgotPassword({ email: formData.email })).then((res) => {
+    if (!res.error) {
+      dispatch(toggleAuthPopup());
+      setMode("signin");
     }
+  });
+
+  return;
+}
 
     if (mode === "reset") {
       const token = location.pathname.split("/").pop();
