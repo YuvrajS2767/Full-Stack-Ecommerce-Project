@@ -87,7 +87,7 @@ const orderData = {
 };
 
 
-dispatch(placeOrder(formData));};
+dispatch(placeOrder(orderData));};
 
   if (cart.length === 0) {
     return (
