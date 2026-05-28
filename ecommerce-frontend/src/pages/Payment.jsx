@@ -59,7 +59,7 @@ const Payment = () => {
     alert("Please provide complete shipping details.");
     return;
   }
-
+  console.log(cart);
   const orderItems = cart.map((item) => ({
   product_id: item.product._id,
   quantity: item.quantity,
