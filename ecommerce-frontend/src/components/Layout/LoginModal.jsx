@@ -45,8 +45,9 @@ const LoginModal = () => {
 
     if (mode === "forgot") {
       dispatch(forgotPassword({ email: formData.email })).then(() => {
+          if (!res.error) {
         dispatch(toggleAuthPopup());
-        setMode("signin");
+        setMode("signin");}
       });
       return;
     }
@@ -75,7 +76,7 @@ const LoginModal = () => {
 
   if (!isAuthPopupOpen || authUser) return null;
 
-  let isLoading = isSigningUp || isLoggingIn || isRequestingForToken;
+  let isLoading = isSigningUp || isLoggingIn || isRequestingForToken|| isUpdatingPassword;
 
   return (
     <>

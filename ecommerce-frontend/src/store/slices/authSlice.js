@@ -3,6 +3,7 @@ import { axiosInstance } from "../../lib/axios";
 import { toast } from "react-toastify";
 import { toggleAuthPopup } from "./popupSlice";
 
+
 export const register = createAsyncThunk(
   "auth/register",
   async (data, thunkAPI) => {
@@ -58,10 +59,12 @@ export const forgotPassword = createAsyncThunk(
   "auth/forgot/password",
   async (email, thunkAPI) => {
     try {
-      const res = await axiosInstance.post(
-        "/auth/password/forgot?frontendUrl=http://localhost:5173",
-        email
-      );
+      const frontendUrl = window.location.origin;
+
+const res = await axiosInstance.post(
+  `/auth/password/forgot?frontendUrl=${frontendUrl}`,
+  email
+);
       toast.success(res.data.message);
       return null;
     } catch (error) {
