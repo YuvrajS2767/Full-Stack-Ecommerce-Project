@@ -3,24 +3,16 @@ import nodeMailer from "nodemailer";
 export const sendEmail = async ({ email, subject, message }) => {
   console.log("sendEmail function started");
 
-  console.log("SMTP ENV CHECK:", {
-    host: process.env.SMTP_HOST,
-    service: process.env.SMTP_SERVICE,
-    port: process.env.SMTP_PORT,
-    mail: process.env.SMTP_MAIL,
-    hasPassword: !!process.env.SMTP_PASSWORD,
-  });
-
-  console.log("Creating transporter...");
-
   const transporter = nodeMailer.createTransport({
-    host: process.env.SMTP_HOST,
-    service: process.env.SMTP_SERVICE,
-    port: 465,
-    secure: true,
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.SMTP_MAIL,
       pass: process.env.SMTP_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
     },
     connectionTimeout: 10000,
   });
@@ -36,5 +28,5 @@ export const sendEmail = async ({ email, subject, message }) => {
 
   const info = await transporter.sendMail(mailOptions);
 
-  console.log("MAIL SENT SUCCESSFULLY:", info.response);
+  console.log("MAIL SENT:", info.response);
 };
