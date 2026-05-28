@@ -29,9 +29,12 @@ const Orders = () => {
   }, [dispatch]);
 
   const handleStatusChange = (orderId, newStatus) => {
-    setSelectedStatus(newStatus);
-    dispatch(updateOrderStatus({ orderId, status: newStatus }));
-  };
+    setSelectedStatus((prev) => ({
+  ...prev,
+  [orderId]: newStatus,
+}));
+ dispatch(updateOrderStatus({ orderId, status: newStatus }));
+};
 
   const filteredOrders =
     filterByStaus === "All"
@@ -95,7 +98,7 @@ const Orders = () => {
                             {new Date(order.created_at).toLocaleString()}
                           </p>
                           <p>
-                            <strong>Total Amount:</strong> ₹${order.total_price}
+                            <strong>Total Amount:</strong> ₹{order.total_price}
                            </p>
                         </div>
 
@@ -170,10 +173,9 @@ const Orders = () => {
                                   <p>
                                     <p>
                                     <strong>Qty:</strong> {item.quantity} |{" "}
-                                    <strong>Price:</strong> ₹${item.price} |{" "}
-                                    <strong>Total Price:</strong> ₹${item.quantity * item.price}
+                                    <strong>Price:</strong> ₹{item.price} |{" "}
+                                    <strong>Total Price:</strong> ₹{item.quantity * item.price}
 </p>
-                                    {item.quantity * item.price}
                                   </p>
                                 </div>
                               </div>
